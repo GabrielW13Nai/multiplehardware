@@ -1,0 +1,60 @@
+# class BadValidator <ActiveModel::Validator
+#   def validator record
+#     if options[:fields].any? { |field| record.send(field) == "john" }
+#       record.errors.add :base, "invalid record"
+#     end
+#   end
+# end
+
+# class myValidator <ActiveModel::Validator
+#   def validate record
+#     unless record.name.starts_with? "A"
+#       record.errors.add :base, "Name cannot start as written"
+#     end
+#   end
+# end
+ # validates :size, inclusion: { in: %w(small medium large), message: "%{value} is not a valid size"}, allow_nil: true
+  # validates_with BadValidator, fields: [:first_name, :last_name]
+  # validates_with BadValidator
+  # validates :terms_of_service, acceptance: { message: "Terms of service must be accepted" }
+  # validates :email, confirmation: true
+  # validates :email, confirmation: { case-sensitive: true }
+  # validates :email_confirmation, presence: true, if email_changed?
+  # validates :end_date, comparison: { greater_than: :start_date }
+  # validates :email, format: { with: /\A[a-zA-Z]+\z/, message: "email must contain letters only"}
+  # validates :size, inclusion: { in: %w(small medium large), message: "%{value} is not a valid size" }
+  # validates :subdomain, exclusion: { in: %w(www ca us jp), message: "%{value} is reserved." }
+  # validates :password, length: { minimum: 2}
+  # validates :password, length: { in: 6..20, message: "Password must be between %{count} characters"}
+  # validates :games_played, numericality: { only_integer: true }
+  # validates :email, uniqueness: true
+  # validates :name, uniqueness: { scope: :year, message: "should happen once a year"}
+  # validates_associated :workers
+  # validates :password, presence: { strict: true }
+
+  # validates :card_number, presence: true, if: :paid_with_card
+  # def paid_with_card
+  #   payment_type == "card"
+  # end
+
+  # validates :password, confirmation: true,
+  # unless: Proc.new{ |a| a.password.blank? }
+  # validates :password, confirmation: true, unless: -> { password.blank?}
+
+  # with_options if: :is_admin? do |admin|
+  #   admin.validates :password, length: { minimum: 5}
+  #   admin.validates :email, presence: true
+  # end
+#  class Trial 
+#   begin
+#     raise ToolError
+#   rescue ToolError => e
+#     puts e.message
+#   end
+# end
+
+# class ToolError
+#     def message
+#         "The specified item cannot be found"
+#     end
+# end

@@ -10,6 +10,15 @@ module Multiplehardware
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
+    config.api_only = true
+    # config for rails API, removes middleware
+
+    # config to add middleware for sessions and cookies back to the API
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore
+
+    # use SameSite protection against
+    config.action_dispatch.cookies_same_site_protection = :strict
 
     # Configuration for the application, engines, and railties goes here.
     #

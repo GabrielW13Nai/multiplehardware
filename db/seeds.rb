@@ -13,7 +13,8 @@ puts "Seeding"
 }
 
 10.times do
-  Item.create(name: Faker::Construction.heavy_equipment, description: Faker::Lorem.sentence)
+  Item.create(name: Faker::Construction.heavy_equipment, description: Faker::Lorem.sentence,
+  image: 'https://media.licdn.com/dms/image/C4E03AQGRHFW7tdEtRQ/profile-displayphoto-shrink_800_800/0/1652422835017?e=2147483647&v=beta&t=yLt2l7n1BSV-beHjH6cc3fm2Gtdjlt2JllKI--XACnM')
 end
 
 

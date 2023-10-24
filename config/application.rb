@@ -19,7 +19,7 @@ module Multiplehardware
 
     # use SameSite protection against
     config.action_dispatch.cookies_same_site_protection = :strict
-
+    # Rails.application.config.forgery_protection_origin_check = false
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

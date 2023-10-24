@@ -1,52 +1,67 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
-const ShopComponent = () => {
+const ShopComponent = ({ onAddItem }) => {
 
     const[name, setName] = useState("")
     const[description, setDescription] = useState("")
     const[image, setImage] = useState("")
-    const[items, setItem] = useState(null)
 
     const formAdd = {
         name: name,
         description: description,
         image: image
     }
+    const[setObj] = useState(formAdd)
 
-    useEffect(() =>{
-        fetch('/items')
-        .then(r => r.json())
-        .then((item)=> setItem(item))
-    },[] )
+    // function handleChange(e){
+    // setObj({...obj, [e.target.id]: e.target.value})}
 
-    fetch('/items', {
+
+
+    function handleSubmit(e) {
+        e.preventDefault()
+        fetch('/items', {
             method: "POST",
             headers:{ "Content-Type": "application/json"},
             body: JSON.stringify(formAdd)
         })
         .then(r => r.json())
-        .then(item=> console.log(item));
+        .then(item => {setObj(formAdd);
+        onAddItem(item)});      
+    }
 
   return (
     <>
-    <form className='.additems'>
-        <input
-        type='text'
-        value={formAdd.name}
-        onChange={e=> setName(e.target.value)}>
-        Name</input>
-        <input
-        type='text'
-        value={formAdd.description}
-        onChange={e=> setDescription(e.target.value)}>
-        Name</input>
-        <input
-        type='text'
-        value={formAdd.image}
-        onChange={e=> setImage(e.target.value)}>
-        Name</input>
-    </form>
+        <div >
+            <div className='additems'>
+                <form onSubmit={handleSubmit}>
+                    <label htmlFor='name'>Name</label>
+                    <input
+                        type='text'
+                        className='txbadd'
+                        placeholder='Input name'
+                        onChange={e=> setName(e.target.value)}/>
+    
+                    <label htmlFor='description'>Description</label>
+                    <input
+                        type='text'
+                        placeholder='Description'
+                        className='txbadd'
+                        onChange={e=> setDescription(e.target.value)}/>
+
+                    <label htmlFor='image'>Image Url: </label>
+                    <input
+                        type='text'
+                        placeholder='image'
+                        className='txbadd'
+                        onChange={e=> setImage(e.target.value)}/>
+                    <button type='submit' className='btn-add'>ADD</button><br></br>
+                </form>
+
+            </div>
+            
+        </div>
     </>
   )
 }

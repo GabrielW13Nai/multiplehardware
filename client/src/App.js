@@ -1,10 +1,16 @@
 import React from 'react'
-import ShopComponent from './Components/ShopComponent'
+import Layout from './Components/Layout'
+import './App.css'
+import { BrowserRouter } from 'react-router-dom'
 
-export const App = () => {
+const App = () => {
   return (
-    <div>
-      <ShopComponent />
-    </div>
+    <BrowserRouter>
+      <div>
+        <Layout />
+      </div>
+    </BrowserRouter>
+    
   )
 }
+export default App

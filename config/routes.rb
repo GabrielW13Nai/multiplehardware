@@ -14,6 +14,6 @@ Rails.application.routes.draw do
   resources :items, only: [:index, :show, :create, :update, :destroy]
   resources :managers, only: [:index, :show, :create, :update, :destroy]
 
-  get '/sessions', to: 'sessions#index'
+  # get '/sessions', to: 'sessions#index'
 
 end

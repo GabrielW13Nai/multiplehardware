@@ -19,7 +19,7 @@ const ShopDisplay = ({ attribs, onEditItem }) => {
         <section className='description'>
         <h4>{name}</h4>
         <p>{description}</p>
-        <button ><IoPencilSharp /></button>
+        {/* <button ><IoPencilSharp /></button> */}
         </section>  
 
       </section>

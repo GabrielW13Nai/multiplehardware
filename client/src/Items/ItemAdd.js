@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 
-const ShopComponent = ({ onAddItem }) => {
+const ItemAdd = ({ onAddItem }) => {
 
     const[name, setName] = useState("")
     const[description, setDescription] = useState("")
@@ -65,4 +65,4 @@ const ShopComponent = ({ onAddItem }) => {
     </>
   )
 }
-export default ShopComponent
+export default ItemAdd

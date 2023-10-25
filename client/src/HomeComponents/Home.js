@@ -4,13 +4,10 @@ import ShopDisplay from './ShopDisplay';
 import Header from '../Cards/Header';
 import Navigation from '../Cards/Navigation';
 
-const Layout = () => {
+const Home = () => {
 
     const[items, setItem] = useState([])
 
-    // function handleAddItem(item){
-    //     setItem(indiv => [...indiv, item])
-    // }
 
     useEffect(()=>{
         fetch('/items')
@@ -30,9 +27,9 @@ const Layout = () => {
                 return(<ShopDisplay attribs ={item}/>
             )})}
         </section>
-        {/* <ShopComponent onAddItem={handleAddItem}/> */}
+
     </main>
   )
 }
 
-export default Layout;
+export default Home;

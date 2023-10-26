@@ -22,13 +22,38 @@
   /* =======text colours */
   --main-bg-color: #fff;
   --main-font-color: rgb(0, 0, 0);
+  --main-dropdown-color: #242536;
+  --primary-text-color: #555;
 
   /* ========Font and typography ======= */
-  --body-font: "Bai Jamjuree", sans-serif;
 
   /* ======z-index */
+  --border-radius: 8px;
   --z-fixed: 100
+  --speed: 500ms;
 }
+
+body{
+  font-family: -apple-system, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialised;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #fff ;
+}
+
+code{
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+.dropdown-menu{
+  position: absolute;
+  top: 100px;
+  right: 20px;
+  background-color: #242536 ;
+  border-radius: var(--border-radius);
+  padding: 10px 20px;
+  width: 200px;
+}
+
 
 
 
@@ -88,8 +113,9 @@ color: yellowgreen;
   position: relative;
   height: var(--header-height);
   display: flex;
-  justify-content: center;
+  justify-content: right;
   align-items: center;
+  margin-right: 7.5rem;
 }
 
 .additems{
@@ -101,7 +127,7 @@ color: yellowgreen;
   margin: 0.5rem;
   width: 60%;
   height: 20px;
-  font-style: var(--body-font);
+  font-style: "Bai Jamjuree", sans-serif;;
 }
 
 .shopcard{
@@ -121,5 +147,5 @@ color: yellowgreen;
   position: relative;
   display: inline-block;
   align-items: center;
-  
+
 }

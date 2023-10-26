@@ -21,7 +21,8 @@ const Home = () => {
             <Navigation />
             <Header />
         </div>
-        
+        <p></p>
+
         <section className='shopdisp'>
             {items.map(item =>{
                 return(<ShopDisplay attribs ={item}/>

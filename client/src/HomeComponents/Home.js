@@ -21,9 +21,10 @@ const Home = () => {
             <Navigation />
             <Header />
         </div>
-        <p></p>
 
+        <h4 className='list-items'>Check out some items on sale below:</h4>
         <section className='shopdisp'>
+
             {items.map(item =>{
                 return(<ShopDisplay attribs ={item}/>
             )})}

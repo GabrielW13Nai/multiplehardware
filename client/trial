@@ -1,0 +1,50 @@
+{/* <div className='gallery-item' ref={sliderRef}>
+              <img
+              src={multiple1}
+              alt='not found'
+              />
+            </div>
+
+            <div className='gallery-item' ref={sliderRef}>
+              <img
+              src={multiple2}
+              alt='not found'
+              />
+            </div>
+
+            <div className='gallery-item' ref={sliderRef}>
+              <img
+              src={multiple3}
+              alt='not found'
+              />
+            </div>
+
+            <div className='gallery-item' ref={sliderRef}>
+              <img
+              src={multiple4}
+              alt='not found'
+              />
+            </div>
+
+            <div className='gallery-item' ref={sliderRef}>
+              <img
+              src={multiple5}
+              alt='not found'
+              />
+            </div>
+
+            <div className='gallery-item' ref={sliderRef}>
+              <img
+              src={multiple6}
+              alt='not found'
+              />
+            </div> */}
+
+            function leftScroll(){
+              const left = document.getElementById("gallery")
+              left.scrollLeft = left.scrollLeft - scrollAmt
+            }
+            function rightScroll(){
+              const right = document.getElementById("gallery")
+              right.scrollLeft = right.scrollLeft + scrollAmt
+            }

@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   height: 1000rem;
+  overflow-x: hidden;
 }
 
 .App-logo {
@@ -54,10 +55,9 @@ code{
 .dropdown-trigger{
   position: absolute;
   height: var(--header-height);
-  right: -3.2rem;
+  right: 1.2rem;
   top:1.2rem;
   height: 60px;
-  width: 6rem;
   border-radius: 50%;
   cursor: pointer;
 }
@@ -65,7 +65,7 @@ code{
 .dropdown-menu{
   position: absolute;
   top: 3rem;
-  right: 1.2rem;
+  right: 0rem;
   width: 10rem;
   line-height: 0.8rem;
   background: #fff;
@@ -76,12 +76,13 @@ code{
   max-height: 0px;
   overflow: hidden;
   transition: max-height 0.5s;
+  z-index: var(--z-fixed);
 }
 /* background: #FFFDD0; */
 .dropdown-menu.menu-open{
   position: absolute;
   top: 3rem;
-  right: 1.2rem;
+  right: 0rem;
   width: 10rem;
   line-height: 0.8rem;
   background: #fff;
@@ -92,7 +93,9 @@ code{
   max-height: 0px;
   background: #FFFDD0;
   max-height: 25rem;
+  z-index: var(--z-fixed);
 }
+
 
 .nav{
   list-style: none;
@@ -100,6 +103,7 @@ code{
   width: 100%;
   display: flex;
   align-items: center;
+  transition: 0.3s;
 }
 .nav span{
   margin-left: 1rem;
@@ -114,6 +118,7 @@ code{
 .nav:hover p{
   font-weight: 600;
 }
+
 
 .name-format{
   margin-right: 0.25em;
@@ -145,7 +150,7 @@ form input{
 .title{
   position: relative;
   width: 50%;
-  top: 0;
+  top: 2rem;
   left: 0;
   color: black;
   z-index: var(--z-fixed);
@@ -214,3 +219,99 @@ color: yellowgreen;
 
 }
 
+.about-main{
+  position: absolute;
+  left: 2rem;
+  display: grid;
+  max-width: 50%;
+}
+
+.about-title{
+  position: absolute;
+  top: 4rem;
+}
+.about-para{
+  position: relative;
+  top: 7rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.about-container{
+  display: flex;
+  gap: 10rem;
+}
+
+.about-secnd-ctn{
+  display: flex;
+  width: 100%;
+  height: 75%;
+  position: absolute;
+  top: 20rem;
+}
+
+.about-secnd-ctn::before {
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 0;
+  z-index: 99;
+  height: 100%;
+  width: 150px;
+  gap: 2rem;
+}
+
+.about-secnd-ctn::after {
+  position: absolute;
+  content: "";
+  right: 0;
+  top: 0;
+  z-index: 99;
+  height: 100%;
+  width: 150px;
+  gap: 2rem;
+}
+
+.img-grid{
+  max-width: 600px;
+  display: flex;
+  overflow: scroll;
+  scroll-behavior: smooth;
+  transition: scroll 0.5s ease-in-out;
+}
+
+.gallery-item{
+  width: 450px;
+  height: 450px;
+  margin: 10px;
+  border-radius: 8px;
+  
+}
+
+/* .gallery-item img{
+  width: 70%;
+  height:  100%;
+  justify-content: space-around;
+  border-radius: 8px;
+  margin: 0.5em;
+} */
+
+/* .img-grid::-webkit-scrollbar{
+  -webkit-appearance: none;
+} */
+
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+
+.icon {
+  color: black;
+  background-color: white;
+  font-size: 50px;
+  outline: none;
+  border: none;
+  padding: opx 40px;
+  cursor: pointer;
+  position: relative;
+  top: 12rem;
+  width: 30px;
+  margin: 3rem;
+}

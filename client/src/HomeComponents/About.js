@@ -1,4 +1,4 @@
-import { React, useRef } from 'react'
+import { React, useRef, useState } from 'react'
 import Navigation from '../Cards/Navigation';
 import multiple1 from '../images/multiple1.jpg'
 import multiple2 from '../images/multiple2.jpg'
@@ -11,7 +11,7 @@ import { Icon } from '@iconify/react';
 const About = () => {
 
   const sliderRef = useRef(null)
-  const scrollAmt = 100;
+  const scrollAmt = 800;
   const images = [
     {
       id: 1,
@@ -48,7 +48,7 @@ const About = () => {
   //   const slider = document.getElementById('gallery')
   //   slider.scrollLeft = slider.scrollLeft - 500
   // }
-
+  const [slide, setSlide] = useState(0)
   return (
     <>
       <Navigation />
@@ -73,17 +73,20 @@ const About = () => {
             onClick={() => {
               const container = sliderRef.current;
               container.scrollLeft -= scrollAmt;
+              setSlide(slide === 0? images.length - 1: slide - 1)
             }}
           />
         </div>
 
-        <div className='img-grid' ref={sliderRef} >
-          {images.map(img => {
+        <div className='img-grid duration-500' ref={sliderRef} >
+          {images.map((img, idx) => {
             return(
               <img
-              className='gallery-item'
+              className={slide === idx? 'gallery-item': 'gallery-item-none'}
               src={img.url}
               alt='not found'
+              key={idx}
+              
               />
               )
             })}
@@ -93,6 +96,7 @@ const About = () => {
             onClick={() => {
               const container = sliderRef.current;
               container.scrollLeft += scrollAmt;
+              setSlide(slide === images.length - 1? 0 : slide + 1)
             }}
           />
       </div>

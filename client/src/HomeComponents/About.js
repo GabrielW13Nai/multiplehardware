@@ -63,17 +63,20 @@ const About = () => {
             We are located along Naivasha Road in Dagoretti Corner. Contact us for more
             information.
             </p>
-          </div>   
+          </div>
         </div>
       </div>
       <div className="about-secnd-ctn">
-        <Icon icon="line-md:chevron-left" 
+        <div>
+          <Icon icon="ci:chevron-left"
             className="icon"
             onClick={() => {
               const container = sliderRef.current;
               container.scrollLeft -= scrollAmt;
             }}
           />
+        </div>
+
         <div className='img-grid' ref={sliderRef} >
           {images.map(img => {
             return(
@@ -85,18 +88,18 @@ const About = () => {
               )
             })}
         </div>
-        <Icon icon="line-md:chevron-right" 
-          className="icon"
-          onClick={() => {
-            const container = sliderRef.current;
-            container.scrollLeft += scrollAmt;
-          }}
-        />
+          <Icon icon="ci:chevron-right"
+            className="icon"
+            onClick={() => {
+              const container = sliderRef.current;
+              container.scrollLeft += scrollAmt;
+            }}
+          />
       </div>
-          
-      
+
+
     </>
-    
+
   )
 }
 

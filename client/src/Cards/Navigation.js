@@ -7,6 +7,8 @@ import { BsHouse } from "react-icons/bs";
 import { BsClipboard } from "react-icons/bs";
 import { RiContactsBookLine } from "react-icons/ri";
 import { MdReviews } from "react-icons/md";
+import { RiAdminFill } from "react-icons/ri";
+import { GrLogin } from "react-icons/gr";
 import logo from '../images/logo.jpg';
 
 const Navigation = () => {
@@ -45,6 +47,12 @@ const Navigation = () => {
             </li>
             <li className='nav'>
             <Link className='nav' to='/reviews'><MdReviews /> &nbsp; <p className='name-format'>Reviews</p> <span className='arrow'>></span></Link>
+            </li>
+            <li className='nav'>
+            <Link className='nav' to='/login'><GrLogin/> &nbsp; <p className='name-format'>Login</p> <span className='arrow'>></span></Link>
+            </li>
+            <li className='nav'>
+            <Link className='nav' to='/admin'><RiAdminFill/> &nbsp; <p className='name-format'>Admin</p> <span className='arrow'>></span></Link>
             </li>
           </div>
         </div>

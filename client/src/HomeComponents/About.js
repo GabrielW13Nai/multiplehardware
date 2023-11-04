@@ -1,4 +1,4 @@
-import { React, useRef, useState } from 'react'
+import { React, useState } from 'react'
 import Navigation from '../Cards/Navigation';
 import multiple1 from '../images/multiple1.jpg'
 import multiple2 from '../images/multiple2.jpg'
@@ -10,8 +10,8 @@ import { Icon } from '@iconify/react';
 
 const About = () => {
 
-  const sliderRef = useRef(null)
-  const scrollAmt = 800;
+  // const sliderRef = useRef(null)
+  // const scrollAmt = 800;
   const images = [
     {
       id: 1,
@@ -38,6 +38,30 @@ const About = () => {
       url: multiple6
     }
   ]
+  const [slide, setSlide] = useState(0)
+
+  const styleImages ={
+    backgroundImage: `url(${images[slide].url})`,
+    backgroundSize: `cover`,
+    backgroundPosition: `center`,
+    width: '100%',
+    height: '600px'
+  }
+  const dotsStyles = {
+    display: 'flex',
+    justifyContent: 'center',
+  }
+
+  const dotsStyle = {
+    margin: '0 3px',
+    cursor: 'pointer',
+    fontSize: '20px',
+
+  }
+
+  const gotoSlide = (idx) => {
+    setSlide(idx)
+  }
 
   // const rightScroll = () => {
   //   const slider = document.getElementById('gallery')
@@ -48,7 +72,7 @@ const About = () => {
   //   const slider = document.getElementById('gallery')
   //   slider.scrollLeft = slider.scrollLeft - 500
   // }
-  const [slide, setSlide] = useState(0)
+
   return (
     <>
       <Navigation />
@@ -71,35 +95,36 @@ const About = () => {
           <Icon icon="ci:chevron-left"
             className="icon"
             onClick={() => {
-              const container = sliderRef.current;
-              container.scrollLeft -= scrollAmt;
+              // const container = sliderRef.current;
+              // container.scrollLeft -= scrollAmt;
               setSlide(slide === 0? images.length - 1: slide - 1)
             }}
           />
         </div>
 
-        <div className='img-grid duration-500' ref={sliderRef} >
+        <div className='img-grid' >
+              <div className='gallery-item' style={styleImages}></div>
+        </div>
+        <div className="dots" style={dotsStyles}>
           {images.map((img, idx) => {
             return(
-              <img
-              className={slide === idx? 'gallery-item': 'gallery-item-none'}
-              src={img.url}
-              alt='not found'
-              key={idx}
+              <div key={idx} style={dotsStyle}>
+                <button className={slide === idx? 'dot' : 'dot-none'} onClick={() => gotoSlide(idx)}></button>
+              </div>
               
-              />
-              )
-            })}
+          )})}
         </div>
           <Icon icon="ci:chevron-right"
             className="icon"
             onClick={() => {
-              const container = sliderRef.current;
-              container.scrollLeft += scrollAmt;
+              // const container = sliderRef.current;
+              // container.scrollLeft += scrollAmt;
               setSlide(slide === images.length - 1? 0 : slide + 1)
             }}
           />
+          
       </div>
+      
 
 
     </>

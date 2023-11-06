@@ -1,13 +1,23 @@
 import { React, createContext, useEffect, useState } from 'react'
 
-const UserContext = (props) => {
+export const UserContext = createContext()
 
-  // const[users, setUsers]
+const UserContextProvider = (props) => {
+
+  const[users, setUsers] = useState([])
+
+  useEffect(() => {
+    fetch('/users')
+    .then(res => res.json())
+    .then(user => setUsers(user))
+  }, [users])
+
+
   return (
     <div>
-        
+
     </div>
   )
 }
 
-export default UserContext;
+export default UserContextProvider;

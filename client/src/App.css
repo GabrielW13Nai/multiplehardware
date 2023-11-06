@@ -93,7 +93,7 @@ code{
   max-height: 0px;
   background: #FFFDD0;
   max-height: 25rem;
-  z-index: var(--z-fixed);
+  z-index: 1;
 }
 
 
@@ -245,9 +245,8 @@ color: yellowgreen;
 .about-secnd-ctn{
   display: flex;
   width: 1000px;
-
   position: relative;
-  top: 15rem;
+  top: 12rem;
   margin: 2rem;
 }
 

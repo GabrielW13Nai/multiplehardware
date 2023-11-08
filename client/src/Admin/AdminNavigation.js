@@ -14,7 +14,7 @@ const AdminNavigation = () => {
             <Link to='/adminanalytics'><button className='btn-admin'><SiGoogleanalytics /> &nbsp; &nbsp; Analytics</button></Link>
             <Link to='/adminperfomance'><button className='btn-admin'><FcSalesPerformance /> &nbsp;&nbsp; Perfomance</button></Link>
             <Link to='/adminsettings'><button className='btn-admin'><IoSettings /> &nbsp; &nbsp; Settings</button></Link>
-            <Link to='/adminperfomance'><button className='btn-admin'><MdInventory /> &nbsp;&nbsp; Inventory</button></Link>
+            <Link to='/adminitems'><button className='btn-admin'><MdInventory /> &nbsp;&nbsp; Inventory</button></Link>
         </div>
     </div>
   )

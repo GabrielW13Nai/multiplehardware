@@ -1,8 +1,8 @@
-import { React, createContext, useState, useEffect } from 'react'
+import React, { createContext, useState, useEffect } from 'react'
 
-const userContext = createContext()
+export const ItemContext = createContext()
 
-const ItemContextProvider = ( { props }) => {
+const ItemContextProvider = (props) => {
 
     const [items, setItem] = useState([])
 
@@ -12,13 +12,13 @@ const ItemContextProvider = ( { props }) => {
         .then((item) => setItem(item))
     }, [items])
 
-    const updatedItem = (id, updated){
+    const updatedItem = (id, updated) => {
         setItem(items.map(item => item.id === id? updated: item))
     }
 
   return (
     <div>
-        <ItemContext.Provider value = {{ items, updatedItem }}>
+        <ItemContext.Provider value={ { items, updatedItem } }>
             {props.children}
         </ItemContext.Provider>
     </div>

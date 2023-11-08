@@ -1,19 +1,26 @@
 class ItemsController < ApplicationController
-rescue_from ActiveRecord::RecordInvalid, with: :items_invalid
     wrap_parameters format: []
+    rescue_from ActiveRecord::RecordInvalid, with: :items_invalid
+
     def index
         items = Item.all
-        render json: items, only: [:name, :description]
+        render json: items, only: [:serial_no, :name, :category, :sub_category, :item_no]
     end
 
     def show
         item = item_one
-        render json: item, only: [:name, :description], status: :ok
+        render json: item, only: [:serial_no, :name, :category, :sub_category, :item_no], status: :ok
     end
 
     def create
         item = Item.create!(item_params)
-        render json: item, only: [:name, :description], status: :created
+        render json: item, only: [:serial_no, :name, :category, :sub_category,  :item_no], status: :created
+    end
+
+    def destroy
+        item = Item.find_by(id: params[:id])
+        item.destroy
+        head :no_content
     end
 
 end
@@ -25,7 +32,7 @@ def item_one
 end
 
 def item_params
-    params.permit(:name, :description, :image)
+    params.permit(:serial_no, :name, :category, :sub_category,  :item_no)
 end
 
 def items_invalid invalid

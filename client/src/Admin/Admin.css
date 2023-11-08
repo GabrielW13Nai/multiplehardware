@@ -113,3 +113,79 @@
     font-size: 24px;
     font-family: 'georgia'
 }
+
+.table-items{
+    table-layout: fixed;
+    position: fixed;
+    left: 25rem;
+    top: 15rem;
+    line-height: 2.2rem;
+    padding: 2rem;
+    font-family: 'Oswald', sans-serif;
+    overflow:scroll;
+    overflow-x: hidden;
+    display: block;
+    border-collapse: collapse;
+    background-color: #e0e0e0;
+    border-radius: 8px;
+    height: 32rem;
+}
+
+.table-items th, .table-items td{
+    padding: 0.8rem;
+}
+.table-items th{
+    font-size:18px;
+}
+
+/* .table-items td{
+    border-top: 0.5px solid;
+    text-overflow: ellipsis;
+    overflow: hidden;
+} */
+
+.table-items td{
+    border-top: 0.5px solid;
+}
+
+.desc-name{
+    width: 25%;
+    text-align: center;
+}
+
+.desc-text{
+    text-align: center;
+}
+.desc-btn{
+position: relative;
+align-items: center;
+line-height: 2.2rem;
+top: 23px;
+left: 20px;
+width: 30px;
+height: 30px;
+text-align: center;
+
+}
+
+.btn-action-items{
+display: flex;
+gap: 0.5rem;
+}
+
+.search-field{
+position: absolute;
+display: flex;
+top: 10rem;
+left: 25rem;
+justify-content: space-between;
+gap: 3rem;
+}
+
+.search-txtbx{
+border: 0.1px #e0e0e0 solid;
+border-radius: 0.5px;
+font-size: 18px;
+font-family: 'Oswald', sans-serif;
+}
+

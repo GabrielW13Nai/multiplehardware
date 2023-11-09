@@ -1,10 +1,15 @@
-import { React, useEffect, useState } from 'react'
-// import { ItemContext } from '../Context/ItemContext'
+import { React, useEffect, useState, Fragment } from 'react'
 import { BiEditAlt } from "react-icons/bi";
+// import { ItemContext } from '../Context/ItemContext'
+
 import { AiFillDelete } from "react-icons/ai";
+import { FcAddDatabase } from "react-icons/fc";
 import Navigation from '../Cards/Navigation'
 import AdminNavigation from './AdminNavigation'
 import './Admin.css'
+import AdminModal from './AdminModal';
+import AdminReadableRow from './AdminReadableRow';
+import AdminEditableRow from './AdminEditableRow';
 
 const AdminItems = () => {
 
@@ -12,13 +17,30 @@ const AdminItems = () => {
   const[filter, setFilter] = useState("")
   const[filtered, setFiltered] = useState("")
 
+  const[editRow, setEditRow] = useState(null)
+
+  const[modal, setModal] = useState(false)
+
+  // const[serial_no, setSerial] = useState("")
+  // const[name, setName] = useState("")
+  // const[category, setCategory] = useState("")
+  // const[sub_category, setSubCategory] = useState("")
+  // const[item_no, setItemNo] = useState("")
+    
+  // const obj = {
+  //   serial_no,
+  //   name,
+  //   category,
+  //   sub_category,
+  //   item_no
+  // }
+
 
   useEffect(() => {
     fetch('/items')
     .then((res) => res.json())
     .then((item) => setItems(item));
 }, [])
-
 
 
 useEffect(() => {
@@ -29,8 +51,8 @@ useEffect(() => {
   }, [filter, items])
 
   function handleDelete(id){
-    const choice = window.confirm("are you sure you want to delete this item?")
-    if(choice){
+    const choice = window.confirm("Are you sure you want to delete this item?")
+    if (choice){
       fetch(`/items/${id}`, {method: 'DELETE',})
       .then(res => res.json())
       .then(() => {
@@ -41,6 +63,22 @@ useEffect(() => {
     }
   }
 
+  function handleModal(){
+    setModal(true)
+  }
+
+  // function handleEditClick(e, item){
+  //   e.preventDefault();
+  //   setEditRow(item.id)
+  // }
+
+  // function selectUser(id){
+  //   const item = items[id - 1]
+
+
+  // }
+
+
 
   return (
     <div>
@@ -48,16 +86,17 @@ useEffect(() => {
       <AdminNavigation />
       <div className='search-field'>
         <input type='text' className='search-txtbx' placeholder='Search for product' onChange={e =>setFilter(e.target.value) }/>
-        {/* <button className='search-btn' onClick={handleSearch}><BsSearch /></button> */}
+        <button className='add-btn' onClick={handleModal}><FcAddDatabase /></button>
       </div>
       <div className='table-items'>
         <thead>
           <tr className='item-table-label'>
+            <th>Id</th>
             <th>Serial No.</th>
             <th>Item name</th>
             <th>Item category</th>
-            <th>Item sub-category</th>
-            <th>Item Number</th>
+            <th>Sub-category</th>
+            <th>No. of items</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -66,11 +105,10 @@ useEffect(() => {
             return (
               <>
               <tr>
-               <td className='desc-text'>{item.serial_no}</td>
-                <td className='desc-name'>{item.name}</td>
-                <td className='desc-text'>{item.category}</td>
-                <td className='desc-text'>{item.sub_category}</td>
-                <td className='desc-text'>{item.item_no}</td>
+                <Fragment>
+                  {editRow === item.id ? <AdminReadableRow/> : <AdminEditableRow item={item} />}
+                </Fragment>
+                
                 <div className='btn-action-items'>
                   <button className='desc-btn'><BiEditAlt /></button>
                   <button className='desc-btn' onClick={() => handleDelete(item.id)}><AiFillDelete/></button>
@@ -82,16 +120,14 @@ useEffect(() => {
                 return (
                   <>
                   <tr>
-                   <td className='desc-text'>{item.serial_no}</td>
-                    <td className='desc-name'>{item.name}</td>
-                    <td className='desc-text'>{item.category}</td>
-                    <td className='desc-text'>{item.sub_category}</td>
-                    <td className='desc-text'>{item.item_no}</td>
+                    <AdminReadableRow item={item}/>
                     <div className='btn-action-items'>
-                      <button className='desc-btn'><BiEditAlt /></button>
+                    <Fragment>
+                      {editRow === item.id ? <AdminReadableRow/> : <AdminEditableRow item={item} />}
+                    </Fragment>
+                    <button className='desc-btn'><BiEditAlt /></button>
                       <button className='desc-btn' onClick={() => handleDelete(item.id)}><AiFillDelete/></button>
                     </div>
-
                   </tr>
                   </>)
           })
@@ -100,6 +136,9 @@ useEffect(() => {
         </tbody>
 
       </div>
+      {modal && <AdminModal
+      closeModal={() => setModal(false)}  
+      />}
 
     </div>
   )

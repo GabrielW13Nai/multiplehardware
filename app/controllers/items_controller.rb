@@ -4,17 +4,17 @@ class ItemsController < ApplicationController
 
     def index
         items = Item.all
-        render json: items, only: [:serial_no, :name, :category, :sub_category, :item_no]
+        render json: items, only: [:id, :serial_no, :name, :category, :sub_category, :item_no]
     end
 
     def show
         item = item_one
-        render json: item, only: [:serial_no, :name, :category, :sub_category, :item_no], status: :ok
+        render json: item, only: [:id, :serial_no, :name, :category, :sub_category, :item_no], status: :ok
     end
 
     def create
         item = Item.create!(item_params)
-        render json: item, only: [:serial_no, :name, :category, :sub_category,  :item_no], status: :created
+        render json: item, only: [:id, :serial_no, :name, :category, :sub_category,  :item_no], status: :created
     end
 
     def destroy

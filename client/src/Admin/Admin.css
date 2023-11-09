@@ -119,6 +119,7 @@
     position: fixed;
     left: 25rem;
     top: 15rem;
+    width: 50rem;
     line-height: 2.2rem;
     padding: 2rem;
     font-family: 'Oswald', sans-serif;
@@ -136,6 +137,7 @@
 }
 .table-items th{
     font-size:18px;
+    text-align: center;
 }
 
 /* .table-items td{
@@ -171,6 +173,8 @@ text-align: center;
 .btn-action-items{
 display: flex;
 gap: 0.5rem;
+outline: none;
+border: none;
 }
 
 .search-field{
@@ -189,3 +193,74 @@ font-size: 18px;
 font-family: 'Oswald', sans-serif;
 }
 
+.add-btn{
+outline: none;
+border: none;
+cursor: pointer;
+height: 35px;
+width: 35px;
+border-radius: 8px;
+}
+
+.modal-items{
+z-index: 1;
+background-color: rgb(0, 0, 0, 0.4);
+display: flex;
+align-items: center;
+justify-content: center;
+width: 100%;
+height: 100%;
+top:0;
+left: 0;
+position: fixed;
+}
+
+.modal{
+background-color: #fff;
+width: 20rem;
+position: absolute;
+left: 25rem;
+top:14rem;
+height: 30rem;
+display: flex;
+line-height: 4rem;
+padding: 2rem;
+margin: 2rem;
+justify-content: space-between;
+}
+
+.modal-items h3{
+    text-decoration: underline;
+}
+
+.form-items{
+position: relative;
+}
+
+.form-items input{
+height: 20px;
+position: relative;
+left: 2rem;
+width: 60%;
+}
+
+.item-btn-modal-add{
+outline: none;
+border: none;
+width: 50px;
+height: 30px;
+border-radius: 8px;
+font-size: 32px;
+margin: 1.5rem;
+}
+
+.item-btn-modal-exit{
+outline: none;
+border: none;
+width: 50px;
+height: 30px;
+border-radius: 8px;
+font-size: 32px;
+position: absolute;
+left: 20rem;
+}

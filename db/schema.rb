@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_07_151549) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_13_085456) do
   create_table "item_workers", force: :cascade do |t|
     t.integer "item_id", null: false
     t.integer "worker_id", null: false
@@ -21,11 +21,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_07_151549) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.integer "serial_no"
+    t.integer "serial_number"
     t.string "name"
+    t.string "size"
     t.string "category"
     t.string "sub_category"
-    t.integer "item_no"
+    t.integer "item_number"
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

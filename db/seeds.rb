@@ -12,9 +12,9 @@ puts "Seeding"
   Manager.create(name: Faker::Name.name, age:rand(40..60), branch: 'Dagoretti Corner')
 }
 
-50.times do
-  Item.create(serial_no: rand(1..10000000), name: Faker::Construction.heavy_equipment, category: ['paints', 'brushes', 'equipment', 'Polypropylene(ppr)', 'Galvanised Iron (GI)'].shuffle.first, sub_category: ['gloss', 'matt', 'silk', 'bends', 'pipes', 'valves', 'N/A'].shuffle.first,
-  item_no: rand(1..50), image: 'https://media.licdn.com/dms/image/C4E03AQGRHFW7tdEtRQ/profile-displayphoto-shrink_800_800/0/1652422835017?e=2147483647&v=beta&t=yLt2l7n1BSV-beHjH6cc3fm2Gtdjlt2JllKI--XACnM')
+5.times do
+  Item.create(serial_number: rand(1..10000000), name: Faker::Construction.heavy_equipment, size: '1/2"', category: ['paints', 'brushes', 'equipment', 'Polypropylene(ppr)', 'Galvanised Iron (GI)'].shuffle.first, sub_category: ['gloss', 'matt', 'silk', 'bends', 'pipes', 'valves', 'N/A'].shuffle.first,
+  item_number: rand(1..50), image: 'https://media.licdn.com/dms/image/C4E03AQGRHFW7tdEtRQ/profile-displayphoto-shrink_800_800/0/1652422835017?e=2147483647&v=beta&t=yLt2l7n1BSV-beHjH6cc3fm2Gtdjlt2JllKI--XACnM')
 end
 
 

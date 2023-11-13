@@ -1,8 +1,7 @@
-import { React, useEffect, useState, Fragment } from 'react'
-import { BiEditAlt } from "react-icons/bi";
+import { React, useEffect, useState, Fragment} from 'react'
+
 // import { ItemContext } from '../Context/ItemContext'
 
-import { AiFillDelete } from "react-icons/ai";
 import { FcAddDatabase } from "react-icons/fc";
 import Navigation from '../Cards/Navigation'
 import AdminNavigation from './AdminNavigation'
@@ -26,14 +25,25 @@ const AdminItems = () => {
   // const[category, setCategory] = useState("")
   // const[sub_category, setSubCategory] = useState("")
   // const[item_no, setItemNo] = useState("")
-    
-  // const obj = {
-  //   serial_no,
-  //   name,
-  //   category,
-  //   sub_category,
-  //   item_no
-  // }
+
+  const [editObj, setEditObj] = useState({
+    serial_number: "",
+    name: "",
+    size: "",
+    category: "",
+    sub_category: "",
+    item_number: "",
+  })
+
+  const [item, setItem] = useState({
+    serial_number: "",
+    name: "",
+    size: "",
+    category: "",
+    sub_category: "",
+    item_number: "",
+  })
+
 
 
   useEffect(() => {
@@ -67,10 +77,71 @@ useEffect(() => {
     setModal(true)
   }
 
-  // function handleEditClick(e, item){
-  //   e.preventDefault();
-  //   setEditRow(item.id)
-  // }
+  function handleEditFormChange(e){
+    // e.preventDefault();
+
+
+    const fieldName = e.target.getAttribute('name')
+    const fieldValue = e.target.value
+
+    const newData = {...editObj}
+
+    newData[fieldName] = fieldValue
+    setEditObj(newData)
+
+    // const name = e.target.name
+    // const value = e.target.value
+    // setEditObj({...editObj, [name]: value})
+  }
+
+  function handleEditClick(item, e){
+    // e.preventDefault();
+    setEditRow(item.id)
+    setItem(item)
+
+    const formValues = {
+      serial_number: item.serial_number,
+      name: item.name,
+      size: item.size,
+      category: item.category,
+      sub_category: item.sub_category,
+      item_number: item.item_number,
+    }
+    setEditObj(formValues)
+
+  }
+
+  function handleEditItem(updated){
+    items.map((item) => {
+      if (item.id === updated.id){
+        return updated
+      }
+      else{
+        return item
+      }
+    })
+  }
+
+  function handleSubmit(e, id){
+    // const choice = window.confirm("Are you sure you want to edit this item?")
+    //   if (choice){
+      id = editRow
+      e.preventDefault()
+      fetch(`/items/${id}`,{
+          method: 'PATCH',
+          headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+          },
+          body: JSON.stringify(editObj)}
+          )
+      .then(res => res.json())
+      .then((item) => {console.log(item)
+      handleEditItem(item)});
+      // }
+      window.location.reload(true)
+  }
+
 
   // function selectUser(id){
   //   const item = items[id - 1]
@@ -81,67 +152,70 @@ useEffect(() => {
 
 
   return (
-    <div>
+    <>
       <Navigation />
       <AdminNavigation />
       <div className='search-field'>
-        <input type='text' className='search-txtbx' placeholder='Search for product' onChange={e =>setFilter(e.target.value) }/>
+        <input type='text' className='search-txtbx' placeholder='Search for products' onChange={e =>setFilter(e.target.value) }/>
         <button className='add-btn' onClick={handleModal}><FcAddDatabase /></button>
       </div>
-      <div className='table-items'>
-        <thead>
-          <tr className='item-table-label'>
-            <th>Id</th>
-            <th>Serial No.</th>
-            <th>Item name</th>
-            <th>Item category</th>
-            <th>Sub-category</th>
-            <th>No. of items</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filtered.length === 0? items.map(item=>{
-            return (
-              <>
-              <tr>
+
+      <form className='form-item' onSubmit={handleSubmit}>
+        <div className='table-items'>
+          <thead>
+            <tr className='item-table-label'>
+              <th>Id</th>
+              <th>Serial No.</th>
+              <th>Item name</th>
+              <th>Size</th>
+              <th>Item category</th>
+              <th>Sub-category</th>
+              <th>No. of items</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filtered.length === 0? items.map(item=>{
+              return (
+                <>
+                <tr>
                 <Fragment>
-                  {editRow === item.id ? <AdminReadableRow/> : <AdminEditableRow item={item} />}
+                     {editRow === item.id?
+                        <AdminEditableRow handleEditFormChange={handleEditFormChange} handleEditReverse={() => setEditRow(null)} editObj={editObj} item={item} />
+                        :<AdminReadableRow item={item} onDelete={() => handleDelete(item.id)} onEditClick={() => handleEditClick(item)} />
+                        }
                 </Fragment>
-                
-                <div className='btn-action-items'>
-                  <button className='desc-btn'><BiEditAlt /></button>
-                  <button className='desc-btn' onClick={() => handleDelete(item.id)}><AiFillDelete/></button>
-                </div>
-              </tr>
-              </>)})
-              :
-              filtered.map(item=>{
-                return (
-                  <>
-                  <tr>
-                    <AdminReadableRow item={item}/>
-                    <div className='btn-action-items'>
-                    <Fragment>
-                      {editRow === item.id ? <AdminReadableRow/> : <AdminEditableRow item={item} />}
-                    </Fragment>
-                    <button className='desc-btn'><BiEditAlt /></button>
-                      <button className='desc-btn' onClick={() => handleDelete(item.id)}><AiFillDelete/></button>
-                    </div>
-                  </tr>
-                  </>)
-          })
-          }
+                </tr>
+                </>)})
+                :
+                  filtered.map(item=>{
+                    return (
+                      <>
+                      <tr>
+                      <Fragment>
+                      {editRow === item.id?
+                          <AdminEditableRow handleEditFormChange={handleEditFormChange} handleEditReverse={() => setEditRow(null)} editObj={editObj} item={item} />
+                          :<AdminReadableRow item={item} onDelete={() => handleDelete(item.id)} onEditClick={() => handleEditClick(item)} />
+                          }
+                      </Fragment>
+                      </tr>
+                      </>)
+            })
+            }
 
-        </tbody>
+          </tbody>
 
-      </div>
-      {modal && <AdminModal
-      closeModal={() => setModal(false)}  
-      />}
+          </div>
+        </form>
+        {modal && <AdminModal item={item}
+        closeModal={() => setModal(false)}
+        />}
 
-    </div>
+      </>
+
   )
 }
 
 export default AdminItems
+
+

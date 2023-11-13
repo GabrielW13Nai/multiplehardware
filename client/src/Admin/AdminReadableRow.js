@@ -1,16 +1,22 @@
 import React from 'react'
 import './Admin.css'
 import { BiEditAlt } from "react-icons/bi";
-const AdminReadableRow = ( {item, handleEditClick}) => {
+import { AiFillDelete } from "react-icons/ai";
+
+const AdminReadableRow = ( {item, onEditClick, onDelete}) => {
   return (
     <>
         <td className='desc-text'>{item.id}</td>
-        <td className='desc-text'>{item.serial_no}</td>
-        <td className='desc-name'>{item.name}</td>
+        <td className='desc-text'>{item.serial_number}</td>
+        <td className='desc-text'>{item.name}</td>
+        <td className='desc-text'>{item.size}</td>
         <td className='desc-text'>{item.category}</td>
         <td className='desc-text'>{item.sub_category}</td>
-        <td className='desc-text'>{item.item_no}</td>
-        <button className='desc-btn'><BiEditAlt /></button>
+        <td className='desc-text'>{item.item_number}</td>
+        <div className='btn-action-items'>
+          <button className='desc-btn' onClick={onEditClick}><BiEditAlt /></button>
+          <button className='desc-btn' onClick={onDelete}><AiFillDelete/></button>
+        </div>
     </>
   )
 }
